@@ -1,3 +1,3 @@
-# weather_app
+# Weather app
 
 Weather app development in Flutter
