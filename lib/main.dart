@@ -21,68 +21,77 @@ class MainApp extends StatefulWidget {
 
 //SingleTickerProviderStateMixin for animation
 class MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
-  TabController controller;
-  bool _visibilityFAB = false;
+  TabController _tabController;
+  bool _visibilityAppBar = false;
+  double _sizeAppBar = 50.0;
 
   @override
   void initState() {
     super.initState();
-    controller = new TabController(length: 3, vsync: this);
+    _tabController = new TabController(length: 3, vsync: this);
+    _tabController.addListener(_changeTab);
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    controller.dispose();
+    _tabController.dispose();
     super.dispose();
+  }
+
+  void _changeTab() {
+    setState(() {
+      _visibilityAppBar = _tabController.index == 1 ? false : true;
+      _sizeAppBar = _visibilityAppBar? 0.0: 50.0;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Opacity(
-          opacity: _visibilityFAB ? 1.0 : 0.0,
-          child: FloatingActionButton(
-            onPressed: () {},
-            backgroundColor: Color(_backgroundColorBlueGrey),
-            foregroundColor: Colors.white,
-            child: Icon(Icons.add),
-          ),
-        ),
-        body: new TabBarView(
-          children: <Widget>[
-            new Home(),
-            new Cities(),
-            new Settings(),
-          ],
-          controller: controller,
-        ),
-        bottomNavigationBar: new Material(
-          color: Colors.white,
-          child: new TabBar(
-            indicatorColor: Colors.blueGrey,
-            tabs: <Tab>[
-              new Tab(
-                icon: new Icon(
-                  Icons.home,
-                  color: Colors.blueGrey,
-                ),
-              ),
-              new Tab(
-                  icon: new Icon(
-                Icons.language,
-                color: Colors.blueGrey,
-              )),
-              new Tab(
-                icon: new Icon(
-                  Icons.settings,
-                  color: Colors.blueGrey,
-                ),
-              )
+      appBar: PreferredSize(
+          child: AppBar(
+            toolbarOpacity: _visibilityAppBar ? 1.0 : 00,
+            backgroundColor: Colors.white,
+            actions: <Widget>[
+              IconButton(icon: Icon(Icons.add, color: Colors.black,), onPressed: null, tooltip: 'Agregar Ciudad',)
             ],
-            controller: controller,
           ),
-        ));
+          preferredSize: Size.fromHeight(_sizeAppBar)),
+      body: new TabBarView(
+        children: <Widget>[
+          new Home(),
+          new Cities(),
+          new Settings(),
+        ],
+        controller: _tabController,
+      ),
+      bottomNavigationBar: new Material(
+        color: Colors.white,
+        child: new TabBar(
+          indicatorColor: Colors.blueGrey,
+          tabs: <Tab>[
+            new Tab(
+              icon: new Icon(
+                Icons.home,
+                color: Colors.blueGrey,
+              ),
+            ),
+            new Tab(
+                icon: new Icon(
+              Icons.language,
+              color: Colors.blueGrey,
+            )),
+            new Tab(
+              icon: new Icon(
+                Icons.settings,
+                color: Colors.blueGrey,
+              ),
+            )
+          ],
+          controller: _tabController,
+        ),
+      ),
+    );
   }
 }
