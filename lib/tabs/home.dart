@@ -21,8 +21,8 @@ final int _colorDarkGrey = 0xff455a64;
 
 final String _imgRainThunder = 'images/lightning-rain.svg';
 
-final int _colorGreyLight = 0xff90a4ae;
-final int _colorDarkGreyLight = 0xff455a64;
+final int _colorGreyLight = 0xff607d8b;
+final int _colorDarkGreyLight = 0xff607d8b;
 
 final String _imgCloudSun = 'images/cloud-sun.svg';
 
@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
       padding: EdgeInsets.only(top: 45.00),
       child: Text(
         'San Salvador',
-        style: TextStyle(fontSize: 30, color: Colors.white),
+        style: TextStyle(fontSize: 30, color: Colors.white, fontFamily: 'Montserrat_Medium'),
       ),
     );
 
@@ -62,14 +62,13 @@ class Home extends StatelessWidget {
       padding: EdgeInsets.only(top: 20.00),
       child: Text(
         '20 °C',
-        style: TextStyle(fontSize: 50, color: Colors.white),
+        style: TextStyle(fontSize: 50, color: Colors.white, fontFamily: 'Montserrat_Medium'),
       ),
     );
 
-
     for (var i = 0; i < 6; i++) {
       _cards.add(new Card(
-        color: Color(_colorDarkBlue),
+        color: Color(_colorGreyLight),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -89,7 +88,7 @@ class Home extends StatelessWidget {
                 Container(
                   child: Text(
                     _days[i],
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'Montserrat_Regular'),
                   ),
                 )
               ],
@@ -103,6 +102,7 @@ class Home extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat_Regular',
                         fontSize: 16),
                   ),
                 )
@@ -116,19 +116,23 @@ class Home extends StatelessWidget {
     // TODO: implement build
     return new Scaffold(
       body: new Container(
-        padding: EdgeInsets.only(top: 30.0),
+        padding: EdgeInsets.only(top: 10.0),
         width: double.infinity,
         height: double.infinity,
-        color: new Color(_colorBlue),
+        color: new Color(_colorGrey),
         child: new Column(
           children: <Widget>[
             Row(
               children: <Widget>[
-                Expanded(
+                new Expanded(
+                  child: new Container(
                     child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[textCity, imageWeather, textWeather],
-                    ))
+                    ),
+                    padding: EdgeInsets.only(bottom: 20),
+                  ),
+                )
               ],
             ),
             Expanded(

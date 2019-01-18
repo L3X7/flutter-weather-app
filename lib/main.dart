@@ -3,12 +3,15 @@ import 'package:weather_app/tabs/home.dart';
 import 'package:weather_app/tabs/cities.dart';
 import 'package:weather_app/tabs/settings.dart';
 
+final int _colorGrey = 0xff546e7a;
+
+final int _backgroundColorBlueGrey = 0xff263238;
+
+
 void main() => runApp(MaterialApp(
       title: 'Main App',
       home: MainApp(),
     ));
-
-final int _backgroundColorBlueGrey = 0xff263238;
 
 class MainApp extends StatefulWidget {
   @override
@@ -23,7 +26,7 @@ class MainApp extends StatefulWidget {
 class MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
   TabController _tabController;
   bool _visibilityAppBar = false;
-  double _sizeAppBar = 50.0;
+  double _sizeAppBar = 0.0;
 
   @override
   void initState() {
@@ -49,15 +52,6 @@ class MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          child: AppBar(
-            toolbarOpacity: _visibilityAppBar ? 1.0 : 00,
-            backgroundColor: Colors.white,
-            actions: <Widget>[
-              IconButton(icon: Icon(Icons.add, color: Colors.black,), onPressed: null, tooltip: 'Agregar Ciudad',)
-            ],
-          ),
-          preferredSize: Size.fromHeight(_sizeAppBar)),
       body: new TabBarView(
         children: <Widget>[
           new Home(),

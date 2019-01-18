@@ -76,13 +76,16 @@ class Cities extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20),
+                            fontSize: 20,
+                            fontFamily: 'Montserrat_Medium'),
                       ),
                       margin: EdgeInsets.only(top: 20, left: 15)),
                   Container(
                       child: Text(
                         'Nublado',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Montserrat_Regular'),
                       ),
                       margin: EdgeInsets.only(top: 2, bottom: 10, left: 15)),
                   Container(
@@ -91,7 +94,8 @@ class Cities extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 35),
+                            fontSize: 35,
+                            fontFamily: 'Montserrat_Medium'),
                       ),
                       margin: EdgeInsets.only(bottom: 10, left: 15))
                 ],
@@ -115,6 +119,20 @@ class Cities extends StatelessWidget {
         color: Colors.black,
         child: new Column(
           children: <Widget>[
+            new Row(
+              children: <Widget>[
+                new Expanded(
+                    child: new Container(
+                        padding: EdgeInsets.only(top: 30.0),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: IconButton(
+                              icon: Icon(Icons.add, color: Colors.white, size: 35),
+                              tooltip: 'Agregar ciudad',
+                              onPressed: () {}),
+                        )))
+              ],
+            ),
             new Expanded(
                 child: new ListView(
               children: cards,

@@ -37,6 +37,21 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+    - family: Montserrat_Light
+      fonts:
+        - asset: fonts/Montserrat-Light.ttf
+    - family: Montserrat_Medium
+      fonts:
+        - asset: fonts/Montserrat-Medium.ttf
+    - family: Montserrat_Regular
+      fonts:
+        - asset: fonts/Montserrat-Regular.ttf
+    - family: Montserrat_Bold
+      fonts:
+        - asset: fonts/Montserrat-Bold.ttf
+
+
   assets:
   - images/rain.svg
   - images/sun.svg
