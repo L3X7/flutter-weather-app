@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:weather_app/form_new_city.dart';
 
 final int _colorBlue = 0xff0277bd;
 final int _colorDarkBlue = 0xff0370af;
@@ -129,7 +130,9 @@ class Cities extends StatelessWidget {
                           child: IconButton(
                               icon: Icon(Icons.add, color: Colors.white, size: 35),
                               tooltip: 'Agregar ciudad',
-                              onPressed: () {}),
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => FormNewCity() ));
+                              }),
                         )))
               ],
             ),
