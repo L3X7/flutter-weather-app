@@ -124,7 +124,7 @@ class Cities extends StatelessWidget {
               children: <Widget>[
                 new Expanded(
                     child: new Container(
-                        padding: EdgeInsets.only(top: 30.0),
+                        padding: EdgeInsets.only(top: 25.0),
                         child: Align(
                           alignment: Alignment.center,
                           child: IconButton(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 class FormNewCity extends StatefulWidget {
   @override
@@ -6,28 +7,45 @@ class FormNewCity extends StatefulWidget {
 }
 
 class _FormNewCity extends State<FormNewCity> {
-  Icon actionIcon = new Icon(
-    Icons.search,
-    color: Colors.white,
-  );
-  Widget appBarTitle = new Text(
-    ' ',
-    style: TextStyle(color: Colors.white),
-  );
-  FocusNode focusTxt = FocusNode();
-
+  Icon actionIcon;
+  Widget appBarTitle;
+  List<Widget> cards;
+  Widget contentList;
+  bool visibilityList = false;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    activateSearchButton();
+    actionIcon = new Icon(
+      Icons.search,
+      color: Colors.white,
+    );
+    appBarTitle = new Text(
+      ' ',
+      style: TextStyle(color: Colors.white),
+    );
+    cards = new List();
+    contentList = emptyCities();
+  }
 
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(appBar: buildAppBar(context));
+    return new Scaffold(
+      appBar: buildAppBar(context),
+      body: new Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Colors.black,
+        child: Column(
+          children: <Widget>[Expanded(child: contentList)],
+        ),
+      ),
+    );
   }
 
   Widget buildAppBar(BuildContext context) {
@@ -39,7 +57,7 @@ class _FormNewCity extends State<FormNewCity> {
           icon: actionIcon,
           onPressed: () {
             setState(() {
-              onPressedSearchButton();
+              onPressedSearchButton(context);
             });
           },
         )
@@ -47,44 +65,70 @@ class _FormNewCity extends State<FormNewCity> {
     );
   }
 
-  void activateSearchButton() {
-    this.actionIcon = new Icon(
-      Icons.close,
-      color: Colors.white,
-    );
-    this.appBarTitle = new TextField(
-        focusNode: focusTxt,
-        style: new TextStyle(color: Colors.black),
-        decoration: new InputDecoration(
-            hintText: 'Search',
-            focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white)),
-            hintStyle: new TextStyle(color: Colors.white)));
-    focusInput();
-  }
-
-  void onPressedSearchButton() {
+  void onPressedSearchButton(BuildContext context) {
     if (this.actionIcon.icon == Icons.search) {
       this.actionIcon = new Icon(
         Icons.close,
         color: Colors.white,
       );
       this.appBarTitle = new TextField(
-          focusNode: focusTxt,
-          style: new TextStyle(color: Colors.black),
-          decoration: new InputDecoration(
-              hintText: 'Search',
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white)),
-              hintStyle: new TextStyle(color: Colors.white)));
-      focusInput();
+        style:
+            new TextStyle(color: Colors.white, fontFamily: 'Montserrat_Medium'),
+        decoration: new InputDecoration(
+            hintText: 'Buscar cuidad...',
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)),
+            hintStyle: new TextStyle(color: Colors.white30)),
+        onChanged: (text) {
+          searchText(text);
+        },
+      );
     } else {
       this.actionIcon = new Icon(Icons.search, color: Colors.white);
       this.appBarTitle = new Text('');
     }
   }
 
-  void focusInput() {
-    FocusScope.of(context).requestFocus(focusTxt);
+  Widget listCities() {
+    return ListView(
+      children: cards,
+    );
+  }
+
+  Widget emptyCities() {
+    return Container(
+        margin: EdgeInsets.only(top: 150),
+        child: Column(
+          children: <Widget>[
+            Icon(
+              Icons.search,
+              color: Colors.white30,
+              size: 70,
+            ),
+            Text(
+              'Buscar ciudad',
+              style: TextStyle(
+                  color: Colors.white30, fontFamily: 'Montserrat_Medium'),
+            )
+          ],
+        ));
+  }
+
+  void searchText(String text) {
+    setState(() {
+      cards.clear();
+      if (text.isEmpty) {
+        this.contentList = emptyCities();
+        return;
+      }
+      cards.add(
+        ListTile(
+          title: Text('San Salvador',
+              style: TextStyle(
+                  fontFamily: 'Montserrat_Medium', color: Colors.white)),
+        ),
+      );
+      this.contentList = listCities();
+    });
   }
 }
