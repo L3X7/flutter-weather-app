@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:developer';
+import 'package:weather_app/models/city.dart';
 
 class FormNewCity extends StatefulWidget {
   @override
@@ -12,6 +12,7 @@ class _FormNewCity extends State<FormNewCity> {
   List<Widget> cards;
   Widget contentList;
   bool visibilityList = false;
+  List<City> cityList;
 
   @override
   void initState() {
@@ -26,6 +27,10 @@ class _FormNewCity extends State<FormNewCity> {
     );
     cards = new List();
     contentList = emptyCities();
+    cityList = <City>[];
+    cityList..add(City(id: 1, name: "San Salvador", lon: 12.0, lat: 13.1));
+    cityList..add(City(id: 1, name: "Santa Ana", lon: 12.0, lat: 13.1));
+    cityList..add(City(id: 1, name: "San Miguel", lon: 12.0, lat: 13.1));
   }
 
   @override
@@ -121,13 +126,17 @@ class _FormNewCity extends State<FormNewCity> {
         this.contentList = emptyCities();
         return;
       }
-      cards.add(
-        ListTile(
-          title: Text('San Salvador',
-              style: TextStyle(
-                  fontFamily: 'Montserrat_Medium', color: Colors.white)),
-        ),
-      );
+
+      for(var cities in cityList){
+        cards.add(
+          ListTile(
+            title: Text(cities.name,
+                style: TextStyle(
+                    fontFamily: 'Montserrat_Medium', color: Colors.white)),
+            contentPadding: EdgeInsets.only(left: 30),
+          ),
+        );
+      }
       this.contentList = listCities();
     });
   }
