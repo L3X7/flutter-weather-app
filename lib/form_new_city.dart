@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/city.dart';
+import 'package:http/http.dart' as http;
 
 class FormNewCity extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class _FormNewCity extends State<FormNewCity> {
   Widget contentList;
   bool visibilityList = false;
   List<City> cityList;
+  Future<http.Response> getCities;
 
   @override
   void initState() {
@@ -28,9 +30,6 @@ class _FormNewCity extends State<FormNewCity> {
     cards = new List();
     contentList = emptyCities();
     cityList = <City>[];
-    cityList..add(City(id: 1, name: "San Salvador"));
-    cityList..add(City(id: 1, name: "Santa Ana"));
-    cityList..add(City(id: 1, name: "San Miguel"));
   }
 
   @override
@@ -140,4 +139,6 @@ class _FormNewCity extends State<FormNewCity> {
       this.contentList = listCities();
     });
   }
+
+
 }
