@@ -28,9 +28,9 @@ class _FormNewCity extends State<FormNewCity> {
     cards = new List();
     contentList = emptyCities();
     cityList = <City>[];
-    cityList..add(City(id: 1, name: "San Salvador", lon: 12.0, lat: 13.1));
-    cityList..add(City(id: 1, name: "Santa Ana", lon: 12.0, lat: 13.1));
-    cityList..add(City(id: 1, name: "San Miguel", lon: 12.0, lat: 13.1));
+    cityList..add(City(id: 1, name: "San Salvador"));
+    cityList..add(City(id: 1, name: "Santa Ana"));
+    cityList..add(City(id: 1, name: "San Miguel"));
   }
 
   @override
