@@ -25,8 +25,7 @@ class MainApp extends StatefulWidget {
 //SingleTickerProviderStateMixin for animation
 class MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
   TabController _tabController;
-  bool _visibilityAppBar = false;
-  double _sizeAppBar = 0.0;
+
 
   @override
   void initState() {
@@ -44,8 +43,7 @@ class MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
 
   void _changeTab() {
     setState(() {
-      _visibilityAppBar = _tabController.index == 1 ? false : true;
-      _sizeAppBar = _visibilityAppBar? 0.0: 50.0;
+
     });
   }
 

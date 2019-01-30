@@ -29,6 +29,7 @@ class _FormNewCity extends State<FormNewCity> {
     cards = new List();
     contentList = emptyCities();
     cityList = <City>[];
+    getCitiesService();
   }
 
   @override
@@ -139,8 +140,8 @@ class _FormNewCity extends State<FormNewCity> {
     });
   }
 
-  void getCitiesService(String city) {
-    var service = getCities(city);
+  void getCitiesService() {
+    var service = getCities();
     service.then((response) {
       if(response != null){
 
